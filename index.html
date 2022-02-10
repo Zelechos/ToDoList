@@ -1,101 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./Css/Style.css">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Fontawesome -->
+  <link
+    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    rel="stylesheet"
+  />
+  <!-- Bootswatch Darkly Theme -->
+  <link
+    href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/darkly/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <title>JS Todo List</title>
 </head>
 <body>
-    <section class="temario" id="temario">
+  <!-- Navbar -->
 
-        <div class="content">
-            <h2 class="titleText">Cursos Online Gratis</h2>
-            <p class="text">
-                Estos cursos son adquiridos de links externos Nota: Aprender como hacer una API para tener todos mis link de cursos una Nube o algo
-            </p>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">JS Todo List</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">
+            Home <span class="sr-only">(current)</span>
+          </a>
+        </li>
+      </ul>
+      <!-- <form class="form-inline my-2 my-lg-0" id="filters">
+        <label class="font-weight-bold text-info mr-3">Filters</label>
+        <input type="radio" name="type" value="all" class="mx-1">
+        <label for="male" class="mb-0">All</label>
+        <input type="radio" name="type" value="completed" class="mx-1">
+        <label for="female" class="mb-0">Completed</label>
+        <input type="radio" name="type" value="uncompleted" class="mx-1">
+        <label for="other" class="mr-2 mb-0">Uncompleted</label> 
+
+        <input
+          class="form-control mr-sm-2"
+          type="search"
+          name="words"
+          placeholder="Words"
+          aria-label="Search"
+        >
+        <button class="btn btn-outline-info my-2 my-sm-0" type="submit" id="search">
+          Search
+        </button>
+      </form> -->
+    </div>
+  </nav>
+
+  <!-- Modal -->
+  
+  <!-- <div
+    class="modal fade"
+    id="modal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            Edit Todo
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-        
-        <!--Lista del Temario-->
-        <div class="temariolist">
-
-            <!--Curso 1-->
-            <div class="box">
-                <div class="imgBX">
-                    <a href="https://mega.nz/folder/0xwgzYja#NgkHw3eAbC1siuKhlP963A" target="_blank">
-                        <img src="./Css/Img/react.jpg" class="fitBg" >
-                    </a>
-                </div>
-                <div class="content">
-                    <h2>React Js<br><span>Curso 1</span></h2>
-                </div>
+        <div class="modal-body">
+          <div class="alert alert-danger d-none" role="alert" id="modal-alert">
+            A simple danger alert—check it out!
+          </div>
+          <form>
+            <div class="form-group">
+              <label>Title</label>
+              <input
+                id="modal-title"
+                type="text"
+                class="form-control"
+                placeholder="Do Something"
+              />
             </div>
+            <div class="form-group">
+              <label>Description</label>
+              <textarea class="form-control" id="modal-description" rows="3">
 
-            <!--Curso 2-->
-            <div class="box">
-                <div class="imgBX">
-                    <img src="./Css/Img/VectoresArrays.png" class="fitBg" >
-                </div>
-                <div class="content">
-                    <h2>Javascript<br><span>Curso 2</span></h2>
-                </div>
+              </textarea>
             </div>
-
-            <!--Curso 3-->
-            <div class="box">
-                <div class="imgBX">
-                    <img src="./Css/Img/VectoresArrays.png" class="fitBg" >
-                </div>
-                <div class="content">
-                    <h2>Node Js<br><span>Curso 3</span></h2>
-                </div>
+            <div class="form-group d-inline-flex">
+              <label>Completed</label>
+              <div class="mt-1 ml-2">
+                <input
+                id="modal-completed"
+                type="checkbox"
+              />
+              </div>
             </div>
-
-
-            <!--Curso 4-->
-            <div class="box">
-                <div class="imgBX">
-                    <img src="./Css/Img/VectoresArrays.png" class="fitBg" >
-                </div>
-                <div class="content">
-                    <h2>Angular<br><span>Curso 4</span></h2>
-                </div>
-            </div>
-            
-            
-            <!-- Curso 5-->
-            <div class="box">
-                <div class="imgBX">
-                    <img src="./Css/Img/VectoresArrays.png" class="fitBg" >
-                </div>
-                <div class="content">
-                    <h2>Php<br><span>Curso 5</span></h2>
-                </div>
-            </div>
-
-            <!--Curso 6-->
-            <div class="box">
-                <div class="imgBX">
-                    <img src="./Css/Img/VectoresArrays.png" class="fitBg" >
-                </div>
-                <div class="content">
-                    <h2>Hacking<br><span>Curso 6</span></h2>
-                </div>
-            </div>
+          </form>
         </div>
-    </section>
-    <!--Footer-->
-    <section class="footer">
-        <ul class="sci">
-            <li><a href="https://www.facebook.com/PragmaticCodersGroup/" target="_blank"><img src="./Css/Img/facebook.png"></a></li>
-            <li><a href="https://www.youtube.com/channel/UCQ1D3FO4ICg6SVivOTwIe4w?view_as=subscriber" target="_blank"><img src="./Css/Img/youtube.png"></a></li>
-            <li><a href="https://github.com/Zelechos" target="_blank"><img src="./Css/Img/github.png" ></a></li>
-            <li><a href="https://www.instagram.com/zelechos/?hl=es-la" target="_blank"><img src="./Css/Img/instagram.png" ></a></li>
-            <li><a href="https://twitter.com/CoderPragmatic" target="_blank"><img src="./Css/Img/twitter.png" ></a></li>
-        </ul>
-        <h4 class="copyrightText">Copyright ©2021 <a href="https://github.com/Zelechos">Pragmatic Coder</a>. All rights reserved.</h4>
-        <h6 class="copyrightText">Una Produccion de <a href="https://github.com/Zelechos">Pragmatic Coder</a></h6>
-    </section>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-info" id="modal-btn">
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <main>
+    <div class="container pt-3">
+      <div class="alert alert-danger d-none" role="alert" id="alert">
+        A simple danger alert—check it out!
+      </div>
+
+      <!-- Add Todo -->
+
+      <div>
+        <form> 
+          <div class="row">
+            <div class="col-sm-3 d-sm-flex align-items-center">
+              <label class="m-sm-0">Title</label>
+              <input
+                type="text"
+                id="title"
+                class="form-control ml-sm-2"
+                placeholder="Learn JS"
+              >
+            </div>
+            <div class="px-sm-2 col-sm-7 d-sm-flex align-items-center mt-2 mt-sm-0">
+              <label class="m-sm-0">Description</label>
+              <input
+                type="text"
+                id="description"
+                class="form-control ml-sm-2"
+                placeholder="Watch JS Tutorials"
+              >
+            </div>
+            <div class="col-sm-2 d-sm-flex justify-content-end mt-4 mt-sm-0">
+              <button type="button" class="btn btn-info btn-block" id="add">
+                Add
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Table -->
+
+      <div class="mt-5">
+        <table class="table table-striped" id="table">
+          <thead>
+            <tr>
+              <th scope="col">Todo</th>
+              <th scope="col">Description</th>
+              <th scope="col">
+                <div class="d-flex justify-content-center">
+                  Completed
+                </div>
+              </th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                Learn JS
+              </td>
+              <td>
+                Watch Javascript tutorials on Youtube
+              </td>
+              <td class="text-center">
+                <input type="checkbox">
+              </td>
+              <td class="text-right">
+                <button class="btn btn-primary mb-1">
+                  <i class="fa fa-pencil"></i>
+                </button>
+                <button class="btn btn-danger mb-1 ml-1">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- JQuery -->
+  <script
+    src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+    crossorigin="anonymous"
+  ></script>
+  <!-- Bootstrap -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  <!-- JS Code -->
 </body>
 </html>
