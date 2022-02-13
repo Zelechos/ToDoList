@@ -1,7 +1,7 @@
 # Aplicacion de ToDoList en JS
 
 #### continuar el video en 1:55:00 (FILTROS)
-[Link del video](https://www.youtube.com/watch?v=CSWnqdhN5vk&t=572s)
+[Link del video](https://www.youtube.com/watch?v=CSWnqdhN5vk&t=6900s)
 
 ### Primero para empezar a trabajar instalar serve
 ---------------------------------------------------------
