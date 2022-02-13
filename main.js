@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
             $template.getElementById('title-task').textContent = $title.value;
             $template.getElementById('description-task').textContent = $description.value;
 
-
             $clone = $template.cloneNode(true);
             $fragment.appendChild($clone);
             const $row = $table.insertRow();
@@ -56,15 +55,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
         let parentEvent = e.target.parentNode.parentNode;
 
         // reconoce el evento del button remove
-        if(e.target.matches("#btn-remove")){
+        if(e.target.matches("#btn-remove *")){
             let rowEvent = parentEvent;
-            let id = parseInt(rowEvent.getAttribute('id'));
-            removeToDoList(id);
-        }
-
-        // reconoce el evento del button remove
-        if(e.target.matches("#img-remove")){
-            let rowEvent = parentEvent.parentNode;
             let id = parseInt(rowEvent.getAttribute('id'));
             removeToDoList(id);
         }
