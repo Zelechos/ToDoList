@@ -12,6 +12,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
     model.setView(view);
     view.setModel(model);
 
-
-
+    // rederizamos los datos del local storage
+    view.render();
 });

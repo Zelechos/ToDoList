@@ -1,5 +1,5 @@
-// Importamos la clase AddTodo
-import AddTodo from "./components/add-todo.js";
+import AddTodo from "./components/add-todo.js";// Importamos la clase AddTodo
+import Modal from "./components/modal.js";//Importamos la clase Modal
 
 export default class View{
 
@@ -8,12 +8,19 @@ export default class View{
         this.model = null;
         this.table = document.getElementById('table');
         this.addTodo = new AddTodo();
+        this.modal = new Modal();
 
         this.addTodo.onClick((title, description)=>this.addTask(title, description));
+        this.modal.onClick((id, values) => this.editTask(id, values));
     }
 
     setModel(model){
         this.model = model;
+    }
+
+    render(){
+        const tasks = this.model.getTasks();
+        tasks.forEach(task => this.createRow(task));
     }
 
     addTask(title, description){
@@ -24,6 +31,14 @@ export default class View{
     removeTask(id){
         this.model.removeTask(id);
         document.getElementById(id).remove();
+    }
+
+    editTask(id, values){
+        this.model.editTask(id,values);
+        const row = document.getElementById(id);
+        row.children[0].textContent = values.title;
+        row.children[1].textContent = values.description;
+        row.children[2].children[0].checked = values.completed;
     }
 
     toggleCompleted(id){
@@ -44,13 +59,10 @@ export default class View{
         <td class="text-center">
         </td>
         <td class="text-right">
-            <button class="btn btn-primary mb-1" id="btn-edit">
-                <i class="fa fa-pencil"></i>
-            </button>
         </td>
         `;
 
-        // Creamos un boton checkbox de la vista
+        // Creamos un boton checkbox de la vista y lo agregamos al HTML
         const $checkboxBtn = document.createElement("input");
         $checkboxBtn.setAttribute('type', 'checkbox');
         $checkboxBtn.checked = task.completed;
@@ -58,11 +70,21 @@ export default class View{
         row.children[2].appendChild($checkboxBtn);
 
         // Creamos el boton para eliminar y lo agregamos al HTML
+        const $editBtn = document.createElement("button");
+        $editBtn.classList.add('btn', 'btn-primary', 'mb-1');
+        $editBtn.innerHTML = '<i class="fa fa-pencil"></i>';
+        $editBtn.setAttribute('data-toggle', 'modal');
+        $editBtn.setAttribute('data-target', '#modal');
+        $editBtn.onclick = ()=>this.modal.setValues(task);
+        row.children[3].appendChild($editBtn);
+
+        // Creamos el boton para eliminar y lo agregamos al HTML
         const $removeBtn = document.createElement("button");
         $removeBtn.classList.add('btn', 'btn-danger', 'mb-1', 'ml-1');
         $removeBtn.innerHTML = '<i class="fa fa-trash"></i>';
         $removeBtn.onclick = ()=>this.removeTask(task.id);
         row.children[3].appendChild($removeBtn);
+
 
     }
 }
