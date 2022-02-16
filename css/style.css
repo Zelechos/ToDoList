@@ -1,0 +1,11 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Gideon+Roman&display=swap');
+
+
+*{
+    font-family: 'Gideon Roman', cursive;
+}
+
+.navbar-brand{
+    font-size: 30px;
+}
