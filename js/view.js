@@ -1,5 +1,6 @@
 import AddTodo from "./components/add-todo.js";// Importamos la clase AddTodo
 import Modal from "./components/modal.js";//Importamos la clase Modal
+import Filters from "./components/filters.js";// Importamos la clase Filters 
 
 export default class View{
 
@@ -9,9 +10,11 @@ export default class View{
         this.table = document.getElementById('table');
         this.addTodo = new AddTodo();
         this.modal = new Modal();
+        this.filters = new Filters();
 
         this.addTodo.onClick((title, description)=>this.addTask(title, description));
         this.modal.onClick((id, values) => this.editTask(id, values));
+        this.filters.onClick((filters => this.filter(filters)));
     }
 
     setModel(model){
@@ -39,6 +42,36 @@ export default class View{
         row.children[0].textContent = values.title;
         row.children[1].textContent = values.description;
         row.children[2].children[0].checked = values.completed;
+    }
+    // Metodo para Filtrar los valores que se muestran en la vista en base a las busquedas
+    filter(filters){
+        // Aplicamos destructaracion
+        const {type, words} = filters
+
+        // Y tambien lo hacemos usando la destructuracion
+        // Traemos las filas de nuestra tabla para manipular cuales se mostraran y cuales no
+        const [, ...rows] = document.getElementsByTagName('tr');
+        for(const row of rows){
+            const [title, description, completed] = row.children;
+            let shouldHide = false;
+
+            // Verificamos si hay titulos o descripciones que tenga la palabra
+            if(words){
+                shouldHide = !title.innerText.includes(words) && !description.innerText.includes(words)
+            }
+            // Verificamos si esta o no esta completa las tareas
+            const shoulBeCompleted = type === 'completed';
+            const isCompleted = completed.children[0].checked;
+
+            if(type !== 'all' && shoulBeCompleted !== isCompleted){
+                shouldHide = true;
+            }
+
+            // Aqui ocultamos y mostramos la filas en base a nuestros filtros
+            (shouldHide)
+                ? row.classList.add('d-none')
+                : row.classList.remove('d-none');
+        }
     }
 
     toggleCompleted(id){
@@ -75,7 +108,14 @@ export default class View{
         $editBtn.innerHTML = '<i class="fa fa-pencil"></i>';
         $editBtn.setAttribute('data-toggle', 'modal');
         $editBtn.setAttribute('data-target', '#modal');
-        $editBtn.onclick = ()=>this.modal.setValues(task);
+
+        // Creamos un objeto que le pasamos para que tenga una correcta referecia de lo que debe editar
+        $editBtn.onclick = ()=>this.modal.setValues({
+            id: task.id,
+            title: row.children[0].innerText,
+            description: row.children[1].innerText,
+            completed : row.children[2].children[0].checked,
+        });
         row.children[3].appendChild($editBtn);
 
         // Creamos el boton para eliminar y lo agregamos al HTML
@@ -84,7 +124,6 @@ export default class View{
         $removeBtn.innerHTML = '<i class="fa fa-trash"></i>';
         $removeBtn.onclick = ()=>this.removeTask(task.id);
         row.children[3].appendChild($removeBtn);
-
 
     }
 }

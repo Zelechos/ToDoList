@@ -29,7 +29,7 @@ export default class Model{
     }
 
     getTasks(){
-        return this.tasks;
+        return this.tasks.map(task => ({...task}));
     }
 
     findIdtask(id){
