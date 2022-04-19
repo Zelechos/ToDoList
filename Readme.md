@@ -14,7 +14,7 @@
 ```
   serve -l 3000
 ```
-### no tiene que mostrar el siguiente mensaje
+### nos tiene que mostrar el siguiente mensaje
 " INFO: Accepting connections at http://localhost:3000"
 
 ### y listo ya puede continuar desarrollando buena codificacion!!
